@@ -1,0 +1,36 @@
+{
+    "title": "Singapore Accounting Scraper Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "keyword": {
+            "title": "Keyword (Financial Service)",
+            "type": "string",
+            "description": "The specific financial service (e.g., 'accounting firm', 'auditor', 'tax consultant').",
+            "editor": "textfield",
+            "prefill": "accounting firm"
+        },
+        "location": {
+            "title": "Location (Optional Region)",
+            "type": "string",
+            "description": "Singapore Region (e.g., 'CBD', 'Raffles Place'). Leave blank to search all of SG.",
+            "editor": "textfield",
+            "prefill": ""
+        },
+        "maxLeads": {
+            "title": "Maximum Leads",
+            "type": "integer",
+            "description": "Maximum number of SG accounting leads to extract.",
+            "default": 100,
+            "minimum": 1
+        },
+        "proxyConfiguration": {
+            "title": "Proxy Configuration",
+            "type": "object",
+            "description": "Proxy settings. Apify Residential Proxy (Singapore targeted) is highly required.",
+            "prefill": { "useApifyProxy": true },
+            "editor": "proxy"
+        }
+    },
+    "required": ["keyword"]
+}
