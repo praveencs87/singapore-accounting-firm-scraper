@@ -1,37 +1,40 @@
 {
-    "actorSpecification": 1,
-    "name": "singapore-accounting-firm-scraper",
-    "title": "Singapore Accounting Firm Scraper",
-    "description": "Extract verified accounting firms, auditors, and tax consultants in Singapore. Premium B2B Fintech leads.",
-    "version": "1.0",
-    "input": "./input_schema.json",
-    "dockerfile": "./Dockerfile",
-    "minMemoryMbytes": 1024,
-    "maxMemoryMbytes": 4096,
-    "pricingModel": "PAY_PER_EVENT",
-    "pricingEvents": [
-        {
-            "eventName": "apify-actor-start",
-            "pricePerEvent": 0.25,
-            "description": "Base fee for starting the crawler (Playwright overhead)"
-        },
-        {
-            "eventName": "lead-extracted",
-            "pricePerEvent": 0.004,
-            "description": "Charged per Singapore Accounting Firm lead successfully extracted ($4.00 per 1k leads)"
-        }
-    ],
-    "isPublic": true,
-    "seoTitle": "Singapore Accounting Scraper | SG Audit & Tax Leads",
-    "seoDescription": "Scrape verified accounting firms, corporate secretaries, and auditors in Singapore. Get direct B2B contacts for Fintech and corporate services sales.",
-    "categories": [
-        "LEAD_GENERATION",
-        "BUSINESS",
-        "FINANCE"
-    ],
-    "defaultRunOptions": {
-        "build": "latest",
-        "timeoutSecs": 1800,
-        "memoryMbytes": 4096
+  "actorSpecification": 1,
+  "name": "singapore-accounting-firm-scraper",
+  "title": "Singapore Accounting Firm Scraper",
+  "description": "Extract verified accounting firms, auditors, and tax consultants in Singapore. Premium B2B Fintech leads.",
+  "version": "1.0",
+  "input": "./input_schema.json",
+  "dockerfile": "./Dockerfile",
+  "minMemoryMbytes": 1024,
+  "maxMemoryMbytes": 4096,
+  "pricingModel": "PAY_PER_EVENT",
+  "pricingEvents": [
+    {
+      "eventName": "apify-actor-start",
+      "pricePerEvent": 0.25,
+      "description": "Base fee for starting the crawler (Playwright overhead)"
+    },
+    {
+      "eventName": "lead-extracted",
+      "pricePerEvent": 0.004,
+      "description": "Charged per Singapore Accounting Firm lead successfully extracted ($4.00 per 1k leads)"
     }
+  ],
+  "isPublic": true,
+  "seoTitle": "Singapore Accounting Scraper | SG Audit & Tax Leads",
+  "seoDescription": "Scrape verified accounting firms, corporate secretaries, and auditors in Singapore. Get direct B2B contacts for Fintech and corporate services sales.",
+  "categories": [
+    "LEAD_GENERATION",
+    "BUSINESS",
+    "FINANCE"
+  ],
+  "defaultRunOptions": {
+    "build": "latest",
+    "timeoutSecs": 1800,
+    "memoryMbytes": 4096
+  },
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  }
 }
