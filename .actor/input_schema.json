@@ -3,19 +3,14 @@
     "type": "object",
     "schemaVersion": 1,
     "properties": {
-        "keyword": {
-            "title": "Keyword (Financial Service)",
-            "type": "string",
-            "description": "The specific financial service (e.g., 'accounting firm', 'auditor', 'tax consultant').",
-            "editor": "textfield",
-            "prefill": "accounting firm"
-        },
-        "location": {
-            "title": "Location (Optional Region)",
-            "type": "string",
-            "description": "Singapore Region (e.g., 'CBD', 'Raffles Place'). Leave blank to search all of SG.",
-            "editor": "textfield",
-            "prefill": ""
+        "startUrls": {
+            "title": "Start URLs",
+            "type": "array",
+            "description": "List of search URLs to scrape.",
+            "editor": "requestListSources",
+            "prefill": [
+                { "url": "https://www.yellowpages.com.sg/search/accounting-firm" }
+            ]
         },
         "maxLeads": {
             "title": "Maximum Leads",
@@ -32,5 +27,5 @@
             "editor": "proxy"
         }
     },
-    "required": ["keyword"]
+    "required": ["startUrls"]
 }

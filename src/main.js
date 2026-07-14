@@ -7,8 +7,7 @@ await Actor.init();
 try {
     const input = await Actor.getInput();
     const { 
-        keyword = 'accounting firm', 
-        location = '', 
+        startUrls = [],
         maxLeads = 100,
         proxyConfiguration 
     } = input || {};
@@ -19,8 +18,7 @@ try {
         apifyProxyCountry: 'SG'
     });
 
-    const displayLocation = location ? ` in "${location}"` : ' in Singapore';
-    log.info(`Searching Singapore financial directories for "${keyword}"${displayLocation}`);
+    log.info(`Searching Singapore financial directories...`);
     
     await Actor.charge({ eventName: 'apify-actor-start', count: 1 });
 
@@ -61,7 +59,7 @@ try {
 
                 // Category or Services
                 const catElement = await item.$('.category, .industry, .cat-link');
-                const services = catElement ? (await catElement.innerText()).trim() : keyword;
+                const services = catElement ? (await catElement.innerText()).trim() : '';
 
                 // Phones
                 const phoneElement = await item.$('a[href^="tel:"], .phone, .contact-number, .call-btn, .mobile');
@@ -147,16 +145,14 @@ try {
         }
     });
 
-    const formatKeyword = encodeURIComponent(keyword);
-    // Generic URL for SG directories
-    let startUrl = `https://www.yellowpages.com.sg/search/${formatKeyword}`;
-    if (location && location.trim() !== '') {
-        startUrl += `?location=${encodeURIComponent(location)}`;
+    if (startUrls && startUrls.length > 0) {
+        for (const req of startUrls) {
+            await crawler.addRequests([{ url: typeof req === 'string' ? req : req.url }]);
+        }
+    } else {
+        log.warning('No startUrls provided. Using default.');
+        await crawler.addRequests([{ url: 'https://www.yellowpages.com.sg/search/accounting-firm' }]);
     }
-    
-    await crawler.addRequests([{
-        url: startUrl
-    }]);
 
     armKillSwitch(crawler);
     await crawler.run();
